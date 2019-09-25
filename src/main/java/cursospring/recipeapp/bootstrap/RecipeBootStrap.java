@@ -4,15 +4,18 @@ import cursospring.recipeapp.model.*;
 import cursospring.recipeapp.repositories.CategoryRepository;
 import cursospring.recipeapp.repositories.RecipeRepository;
 import cursospring.recipeapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEvent> {
     private final CategoryRepository categoryRepository;
@@ -26,6 +29,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
     }
@@ -141,7 +145,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
         guacRecipe.setSource("Mexico");
         //add to return list
         recipes.add(guacRecipe);
-
+        log.debug("added guacamole recipe");
         //Yummy Tacos
         Recipe tacosRecipe = new Recipe();
         tacosRecipe.setDescription("Spicy Grilled Chicken Taco");
@@ -199,6 +203,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
         tacosRecipe.setSource("Unknown");
 
         recipes.add(tacosRecipe);
+        log.debug("added taco recipe");
         return recipes;
     }
 }

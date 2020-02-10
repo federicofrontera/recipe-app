@@ -42,37 +42,37 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
         Optional<UnitOfMeasure> eachUomOptional = unitOfMeasureRepository.findByDescription("Each");
 
         if (!eachUomOptional.isPresent()) {
-            throw new RuntimeException("Expected UOM Not Found");
+            throw new RuntimeException("Expected UOM Not Found 1");
         }
 
         Optional<UnitOfMeasure> tableSpoonUomOptional = unitOfMeasureRepository.findByDescription("Tablespoon");
 
         if (!tableSpoonUomOptional.isPresent()) {
-            throw new RuntimeException("Expected UOM Not Found");
+            throw new RuntimeException("Expected UOM Not Found 2");
         }
 
         Optional<UnitOfMeasure> teaSpoonUomOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 
         if (!teaSpoonUomOptional.isPresent()) {
-            throw new RuntimeException("Expected UOM Not Found");
+            throw new RuntimeException("Expected UOM Not Found 3");
         }
 
         Optional<UnitOfMeasure> dashUomOptional = unitOfMeasureRepository.findByDescription("Dash");
 
         if (!dashUomOptional.isPresent()) {
-            throw new RuntimeException("Expected UOM Not Found");
+            throw new RuntimeException("Expected UOM Not Found 4");
         }
 
         Optional<UnitOfMeasure> pintUomOptional = unitOfMeasureRepository.findByDescription("Pint");
 
         if (!pintUomOptional.isPresent()) {
-            throw new RuntimeException("Expected UOM Not Found");
+            throw new RuntimeException("Expected UOM Not Found 5");
         }
 
         Optional<UnitOfMeasure> cupsUomOptional = unitOfMeasureRepository.findByDescription("Cup");
 
         if (!cupsUomOptional.isPresent()) {
-            throw new RuntimeException("Expected UOM Not Found");
+            throw new RuntimeException("Expected UOM Not Found 6s");
         }
 
         //get optionals
@@ -103,7 +103,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
         Recipe guacRecipe = new Recipe();
         guacRecipe.setDescription("Perfect Guacamole");
         guacRecipe.setPrepTime(10);
-        guacRecipe.setCookTime(0);
+        guacRecipe.setCookTime(15);
         guacRecipe.setDifficulty(Difficulty.EASY);
         guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon" +
                 "\n" +
@@ -143,6 +143,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
 
         guacRecipe.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         guacRecipe.setSource("Mexico");
+        guacRecipe.setServings(5);
         //add to return list
         recipes.add(guacRecipe);
         log.debug("added guacamole recipe");
@@ -201,6 +202,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
 
         tacosRecipe.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
         tacosRecipe.setSource("Unknown");
+        tacosRecipe.setServings(2);
 
         recipes.add(tacosRecipe);
         log.debug("added taco recipe");

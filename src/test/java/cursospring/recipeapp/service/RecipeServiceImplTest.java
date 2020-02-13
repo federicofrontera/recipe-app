@@ -1,5 +1,8 @@
 package cursospring.recipeapp.service;
 
+import cursospring.recipeapp.commands.RecipeCommand;
+import cursospring.recipeapp.converters.RecipeCommandToRecipe;
+import cursospring.recipeapp.converters.RecipeToRecipeCommand;
 import cursospring.recipeapp.model.Recipe;
 import cursospring.recipeapp.repositories.RecipeRepository;
 import cursospring.recipeapp.services.RecipeServicesImpl;
@@ -19,12 +22,16 @@ public class RecipeServiceImplTest {
 
     @Mock
     RecipeRepository recipeRepository;
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
 
     @Before
     public void setUp() throws Exception{
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServicesImpl(recipeRepository);
+        recipeService = new RecipeServicesImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test

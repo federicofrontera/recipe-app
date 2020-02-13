@@ -9,8 +9,7 @@ import cursospring.recipeapp.model.Recipe;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class RecipeCommandToRecipeTest {
     public static final Long RECIPE_ID = 1L;
@@ -103,6 +102,4 @@ public class RecipeCommandToRecipeTest {
         assertEquals(2, recipe.getIngredients().size());
     }
 
-    private void assertNotNull(Recipe recipe) {
-    }
 }

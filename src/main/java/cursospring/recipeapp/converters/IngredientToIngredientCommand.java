@@ -3,7 +3,9 @@ package cursospring.recipeapp.converters;
 import cursospring.recipeapp.commands.IngredientCommand;
 import cursospring.recipeapp.model.Ingredient;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientCommand> {
     private final UnitOfMeasureToUnitOfMeasureCommand converter;
 

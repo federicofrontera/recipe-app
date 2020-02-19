@@ -14,8 +14,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class RecipeControllerTest {
@@ -27,7 +27,7 @@ public class RecipeControllerTest {
     MockMvc mockMvc;
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
         recipeController = new RecipeController(recipeService);
@@ -35,10 +35,9 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void getRecipe() throws Exception{
+    public void getRecipe() throws Exception {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
-
 
 
         when(recipeService.findById(anyLong())).thenReturn(recipe);
@@ -51,7 +50,7 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void getNewRecipeForm() throws Exception{
+    public void getNewRecipeForm() throws Exception {
         RecipeCommand command = new RecipeCommand();
 
         mockMvc.perform(get("/recipe/new"))
@@ -60,7 +59,7 @@ public class RecipeControllerTest {
                 .andExpect(model().attributeExists("recipe"));
     }
 
-   /*Test
+    @Test
     public void testPostNewRecipeForm() throws Exception {
         RecipeCommand command = new RecipeCommand();
         command.setId(2L);
@@ -87,5 +86,5 @@ public class RecipeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
-    }*/
+    }
 }

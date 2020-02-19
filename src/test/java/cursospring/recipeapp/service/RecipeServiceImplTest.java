@@ -11,8 +11,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
@@ -48,5 +51,28 @@ public class RecipeServiceImplTest {
         verify(recipeRepository, times(1)).findById(any());
         verify(recipeRepository, never()).findAll();
 
+    }
+
+    @Test
+    public void getRecipes() throws Exception{
+        Recipe recipe = new Recipe();
+        HashSet initialRecipes = new HashSet();
+        initialRecipes.add(recipe);
+
+        when(recipeService.getRecipes()).thenReturn(initialRecipes);
+        Set<Recipe> recipes = recipeService.getRecipes();
+
+        assertEquals(recipes.size(), 1);
+        verify(recipeRepository, times(1)).findAll();
+        verify(recipeRepository, never()).findById(anyLong());
+
+    }
+
+    @Test
+    public void testDeleteById() throws Exception{
+        Long id = Long.valueOf(2);
+        recipeService.deleteById(id);
+
+        verify(recipeRepository, times(1)).deleteById(anyLong());
     }
 }

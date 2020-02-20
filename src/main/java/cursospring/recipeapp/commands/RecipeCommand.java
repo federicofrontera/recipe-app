@@ -23,7 +23,7 @@ public class RecipeCommand {
     private Set<IngredientCommand> ingredients = new HashSet<>();
     private Difficulty difficulty;
     /* look here if it stops working later*/
-    private NotesCommand notes = new NotesCommand();
+    private NotesCommand notes;
     /* look here if it stops working later*/
     private Set<CategoryCommand> categories = new HashSet<>();
 }

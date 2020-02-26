@@ -2,6 +2,7 @@ package cursospring.recipeapp.controllers;
 
 import cursospring.recipeapp.services.IngredientService;
 import cursospring.recipeapp.services.RecipeService;
+import cursospring.recipeapp.services.UnitOfMeasureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ public class IngredientController {
 
     private final RecipeService recipeService;
     private IngredientService ingredientService;
+    private UnitOfMeasureService unitOfMeasureService;
 
     @Autowired
     public IngredientController(RecipeService recipeService, IngredientService ingredientService) {
@@ -38,6 +40,14 @@ public class IngredientController {
     public String showRecipeIngredient(@PathVariable String recipeId, @PathVariable String id, Model model) {
         model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(id)));
 
+        return "recipe/ingredient/show";
+    }
+
+    @GetMapping
+    @RequestMapping("/recipe/{recipeId}/ingredient/{id}/update")
+    public String updateRecipeIngredient(@PathVariable String recipeId, @PathVariable String id, Model model) {
+        model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(id)));
+        model.addAttribute("uomlist", unitOfMeasureService.listAllUoms());
         return "recipe/ingredient/show";
     }
 

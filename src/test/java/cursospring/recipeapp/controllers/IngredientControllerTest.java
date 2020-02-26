@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class IngrdientControllerTest {
+public class IngredientControllerTest {
     @Mock
     RecipeService recipeService;
 
@@ -51,13 +51,10 @@ public class IngrdientControllerTest {
 
     @Test
     public void testShowIngredient() throws Exception{
-        //given
         IngredientCommand ingredientCommand = new IngredientCommand();
 
-        //when
         when(ingredientService.findByRecipeIdAndIngredientId(anyLong(), anyLong())).thenReturn(ingredientCommand);
 
-        //then
         mockMvc.perform(get("/recipe/1/ingredient/2/show"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/ingredient/show"))

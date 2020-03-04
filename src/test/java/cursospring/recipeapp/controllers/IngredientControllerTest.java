@@ -5,7 +5,6 @@ import cursospring.recipeapp.commands.RecipeCommand;
 import cursospring.recipeapp.services.IngredientService;
 import cursospring.recipeapp.services.RecipeService;
 import cursospring.recipeapp.services.UnitOfMeasureService;
-import org.hibernate.validator.constraints.ModCheck;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -40,7 +39,7 @@ public class IngredientControllerTest {
     public void setUp() throws Exception{
         MockitoAnnotations.initMocks(this);
 
-        controller = new IngredientController(recipeService, ingredientService);
+        controller = new IngredientController(recipeService, ingredientService, unitOfMeasureService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
@@ -69,7 +68,7 @@ public class IngredientControllerTest {
                 .andExpect(model().attributeExists("ingredient"));
     }
 
- /*   @Test
+    @Test
     public void testUpdateIngredientForm() throws Exception {
         //given
         IngredientCommand ingredientCommand = new IngredientCommand();
@@ -105,5 +104,5 @@ public class IngredientControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/ingredient/3/show"));
 
-    }*/
+    }
 }

@@ -4,11 +4,13 @@ import cursospring.recipeapp.commands.UnitOfMeasureCommand;
 import cursospring.recipeapp.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import cursospring.recipeapp.repositories.UnitOfMeasureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Service
 public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
     private final UnitOfMeasureRepository unitOfMeasureRepository;
     private final UnitOfMeasureToUnitOfMeasureCommand converter;
@@ -21,6 +23,7 @@ public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
 
     @Override
     public Set<UnitOfMeasureCommand> listAllUoms() {
+
         return StreamSupport.stream(unitOfMeasureRepository.findAll()
                 .spliterator(), false)
                 .map(converter::convert)

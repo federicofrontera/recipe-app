@@ -1,6 +1,8 @@
 package cursospring.recipeapp.controllers;
 
 import cursospring.recipeapp.commands.IngredientCommand;
+import cursospring.recipeapp.commands.RecipeCommand;
+import cursospring.recipeapp.commands.UnitOfMeasureCommand;
 import cursospring.recipeapp.services.IngredientService;
 import cursospring.recipeapp.services.RecipeService;
 import cursospring.recipeapp.services.UnitOfMeasureService;
@@ -52,6 +54,20 @@ public class IngredientController {
         return "recipe/ingredient/ingredientform";
     }
 
+    @GetMapping("recipe/{recipeId}/ingredient/new")
+    public String newRecipe(@PathVariable String recipeId, Model model){
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+        //todo raise exception if bad id
+
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+        ingredientCommand.setUom(new UnitOfMeasureCommand());
+        model.addAttribute("uomList",  unitOfMeasureService.listAllUoms());
+
+        return "recipe/ingredient/ingredientform";
+    }
+
     @PostMapping("recipe/{recipeId}/ingredient")
     public String saveOrUpdate(@ModelAttribute IngredientCommand command){
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
@@ -61,5 +77,7 @@ public class IngredientController {
 
         return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
     }
+
+
 
 }

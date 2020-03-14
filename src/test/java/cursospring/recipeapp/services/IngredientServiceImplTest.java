@@ -1,4 +1,4 @@
-package cursospring.recipeapp.service;
+package cursospring.recipeapp.services;
 
 import cursospring.recipeapp.commands.IngredientCommand;
 import cursospring.recipeapp.converters.IngredientCommandToIngredient;
@@ -9,8 +9,6 @@ import cursospring.recipeapp.model.Ingredient;
 import cursospring.recipeapp.model.Recipe;
 import cursospring.recipeapp.repositories.RecipeRepository;
 import cursospring.recipeapp.repositories.UnitOfMeasureRepository;
-import cursospring.recipeapp.services.IngredientService;
-import cursospring.recipeapp.services.IngredientServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

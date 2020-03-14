@@ -1,11 +1,9 @@
-package cursospring.recipeapp.service;
+package cursospring.recipeapp.services;
 
 import cursospring.recipeapp.commands.UnitOfMeasureCommand;
 import cursospring.recipeapp.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import cursospring.recipeapp.model.UnitOfMeasure;
 import cursospring.recipeapp.repositories.UnitOfMeasureRepository;
-import cursospring.recipeapp.services.UnitOfMeasureService;
-import cursospring.recipeapp.services.UnitOfMeasureServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

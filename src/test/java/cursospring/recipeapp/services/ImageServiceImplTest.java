@@ -1,5 +1,6 @@
 package cursospring.recipeapp.services;
 
+import cursospring.recipeapp.commands.RecipeCommand;
 import cursospring.recipeapp.model.Recipe;
 import cursospring.recipeapp.repositories.RecipeRepository;
 import org.junit.Before;
@@ -7,6 +8,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,14 +25,14 @@ public class ImageServiceImplTest {
     ImageService imageService;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
 
         imageService = new ImageServiceImpl(recipeRepository);
     }
 
     @Test
-    public void testSaveImageFile() throws Exception{
+    public void testSaveImageFile() throws Exception {
         Long id = 1L;
         MultipartFile multipartFile = new MockMultipartFile("imagefile", "testing.txt",
                 "text/plain", "recipe-app".getBytes());
@@ -48,4 +50,5 @@ public class ImageServiceImplTest {
         Recipe savedRecipe = argumentCaptor.getValue();
         assertEquals(multipartFile.getBytes().length, savedRecipe.getImage().length);
     }
+
 }

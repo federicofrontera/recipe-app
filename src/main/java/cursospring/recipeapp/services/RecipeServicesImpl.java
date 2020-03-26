@@ -3,6 +3,7 @@ package cursospring.recipeapp.services;
 import cursospring.recipeapp.commands.RecipeCommand;
 import cursospring.recipeapp.converters.RecipeCommandToRecipe;
 import cursospring.recipeapp.converters.RecipeToRecipeCommand;
+import cursospring.recipeapp.exceptions.NotFoundException;
 import cursospring.recipeapp.model.Recipe;
 import cursospring.recipeapp.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +43,7 @@ public class RecipeServicesImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe Not Found!");
         }
 
         return recipeOptional.get();

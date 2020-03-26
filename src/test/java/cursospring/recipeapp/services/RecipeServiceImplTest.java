@@ -2,6 +2,7 @@ package cursospring.recipeapp.services;
 
 import cursospring.recipeapp.converters.RecipeCommandToRecipe;
 import cursospring.recipeapp.converters.RecipeToRecipeCommand;
+import cursospring.recipeapp.exceptions.NotFoundException;
 import cursospring.recipeapp.model.Recipe;
 import cursospring.recipeapp.repositories.RecipeRepository;
 import org.junit.Before;
@@ -49,6 +50,18 @@ public class RecipeServiceImplTest {
         verify(recipeRepository, times(1)).findById(any());
         verify(recipeRepository, never()).findAll();
 
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdTestNotFound() throws Exception {
+
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findById(1L);
+
+        //should go boom
     }
 
     @Test

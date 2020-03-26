@@ -1,6 +1,7 @@
 package cursospring.recipeapp.controllers;
 
 import cursospring.recipeapp.commands.RecipeCommand;
+import cursospring.recipeapp.exceptions.NotFoundException;
 import cursospring.recipeapp.model.Recipe;
 import cursospring.recipeapp.services.RecipeService;
 import org.junit.Before;
@@ -10,6 +11,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -50,6 +53,15 @@ public class RecipeControllerTest {
     }
 
     @Test
+    public void testGetRecipeNotFound() throws Exception {
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void getNewRecipeForm() throws Exception {
         RecipeCommand command = new RecipeCommand();
 
@@ -58,6 +70,7 @@ public class RecipeControllerTest {
                 .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
     }
+
 
     @Test
     public void testPostNewRecipeForm() throws Exception {

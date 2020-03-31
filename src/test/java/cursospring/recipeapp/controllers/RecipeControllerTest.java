@@ -3,6 +3,7 @@ package cursospring.recipeapp.controllers;
 import cursospring.recipeapp.commands.RecipeCommand;
 import cursospring.recipeapp.exceptions.NotFoundException;
 import cursospring.recipeapp.model.Recipe;
+import cursospring.recipeapp.services.CategoryService;
 import cursospring.recipeapp.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.HashSet;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;

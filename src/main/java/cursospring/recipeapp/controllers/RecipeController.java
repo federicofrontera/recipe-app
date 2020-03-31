@@ -2,6 +2,7 @@ package cursospring.recipeapp.controllers;
 
 import cursospring.recipeapp.commands.RecipeCommand;
 import cursospring.recipeapp.exceptions.NotFoundException;
+import cursospring.recipeapp.services.CategoryService;
 import cursospring.recipeapp.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class RecipeController {
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
+
 
     @GetMapping("/recipe/{id}/show")
     public String showById(@PathVariable String id, Model model) {
@@ -56,9 +58,12 @@ public class RecipeController {
     }
 
 
+
+    @Autowired CategoryService categoryService;
     @GetMapping("recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model) {
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
+        model.addAttribute("foundCategories", categoryService.findAll());
         return "recipe/recipeform";
     }
 

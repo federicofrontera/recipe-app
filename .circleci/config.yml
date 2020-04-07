@@ -40,7 +40,7 @@ jobs:
       # run unit tests!
       - run: mvn test cobertura:cobertura
       # run tests! and gen code coverage
-      - run: mvn integration-test cobertura:cobertura
+      #- run: mvn integration-test cobertura:cobertura
 
       - store_test_results:
           path: target/surefire-reports

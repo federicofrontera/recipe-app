@@ -3,6 +3,7 @@ spring:
     url: jdbc:mysql://localhost:3306/ff_prod
     username: ff_prod_user
     password: fede
+    platform: mysql
   jpa:
     hibernate:
       ddl-auto: validate
